@@ -15,7 +15,7 @@ class MainHeader extends Component {
       <AppBar position='fixed' style={{backgroundColor: 'inherit', boxShadow: 'none'}}>
       <Toolbar>
         <Typography variant="title" style={{flex: 1}}>
-          µLink
+          µ-Link
         </Typography>
         
         <Tooltip id="tooltip-icon" title="View on GitHub">
