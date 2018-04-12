@@ -1,21 +1,48 @@
+import CssBaseline from 'material-ui/CssBaseline';
+import Fade from 'material-ui/transitions/Fade';
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'typeface-roboto';
+import MainHeader from './Header.js';
+import LinkCreator from './LinkCreator.js';
+
+const fadeTime = 200;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: <LinkCreator parent={this}/>,
+      showContent: true
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        {
+          <React.Fragment>
+            <MainHeader/>
+
+            <Fade in={this.state.showContent} timeout={fadeTime}>
+              <div style={{height: '100%'}}>
+                { this.state.content }
+              </div>
+            </Fade>
+
+          </React.Fragment>
+        }
+      </React.Fragment>
     );
   }
+
+  changeContent(newContent) {
+    this.setState({showContent: false});
+    setTimeout(function() {
+      this.setState({content: newContent, showContent: true});
+    }.bind(this), fadeTime);
+  }
+
 }
 
 export default App;

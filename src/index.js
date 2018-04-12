@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function getPage() {
+    if(window.location.hash.substr(1) === "") {
+        return <App />
+    }else {
+        return <p>Hello!</p>
+    }
+}
+
+ReactDOM.render(getPage(), document.getElementById('root'));
 registerServiceWorker();
