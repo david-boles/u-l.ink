@@ -1,7 +1,7 @@
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import Grid from 'material-ui/Grid';
 import React, { Component } from 'react';
-import CenteringGrid from './CenteringGrid.js';
 import CreatedLinkDetails from './CreatedLinkDetails.js';
 
 class LinkCreator extends Component {
@@ -15,16 +15,18 @@ class LinkCreator extends Component {
   }
   render() {
     return (
-      <CenteringGrid>
-        <TextField placeholder='URL' error={this.state.showError} onChange={this.handleChange} disabled={this.state.working} style={{marginRight: '10px', flexGrow: 1, minWidth: 0}} inputProps={{'aria-label': 'URL'}}/>
-        <Button variant='raised' color='primary' onClick={this.handleButton} disabled={this.state.working || !this.state.validURL}>Shorten</Button>
-      </CenteringGrid>
+      <Grid container justify='center' alignItems='center' style={{height: '100%'} }>
+        <Grid item xs={10} sm={8} md={6} style={{display: 'flex'}}>
+          <TextField placeholder='URL' autoFocus error={this.state.showError} onChange={this.handleChange} disabled={this.state.working} style={{marginRight: '10px', flexGrow: 1, minWidth: 0}} inputProps={{'aria-label': 'URL'}}/>
+          <Button variant='raised' color='primary' onClick={this.handleButton} disabled={this.state.working || !this.state.validURL}>Shorten</Button>
+        </Grid>
+      </Grid>
     );
   }
 
   handleButton = () => {
     this.setState({disable: true});
-    this.props.parent.changeContent(<CreatedLinkDetails parent={this.props.parent}/>);
+    this.props.parent.changeContent(<CreatedLinkDetails ulink='u-l.ink#shortened' parent={this.props.parent}/>);
   }
 
   handleChange = (event) => {
