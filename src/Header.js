@@ -1,4 +1,4 @@
-import Code from '@material-ui/icons/Code';
+import ReportProblem from '@material-ui/icons/ReportProblem';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import Toolbar from 'material-ui/Toolbar';
@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography';
 import React, { Component } from 'react';
 
 // eslint-disable-next-line
-const LinkToGitHub = props => <a href="https://github.com/david476/u-l.ink" {...props} />;
+const LinkToGitHubIssues = props => <a href="https://github.com/david476/u-l.ink/issues" {...props} />;
 
 class MainHeader extends Component {
   render() {
@@ -15,12 +15,12 @@ class MainHeader extends Component {
       <AppBar position='fixed' style={{backgroundColor: 'inherit', boxShadow: 'none'}}>
       <Toolbar>
         <Typography variant="title" style={{flex: 1}}>
-          µ-Link
+          <a href="https://github.com/david476/u-l.ink" style={{color: 'inherit', textDecoration: 'inherit'}}>µ-Link</a>
         </Typography>
         
-        <Tooltip id="tooltip-icon" title="View on GitHub">
-          <IconButton aria-label="View on GitHub" component={LinkToGitHub}>
-            <Code/>
+        <Tooltip id="tooltip-icon" title="Report Problem">
+          <IconButton aria-label="Report Problem" component={LinkToGitHubIssues}>
+            <ReportProblem/>
           </IconButton>
         </Tooltip>
         
