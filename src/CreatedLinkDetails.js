@@ -16,7 +16,7 @@ class CreatedLinkDetails extends Component {
           <Grid item>
             <Typography variant='display1' style={{marginTop: '40px'}}>
               {this.props.ulink}
-              <IconButton aria-label="Report Problem">
+              <IconButton aria-label="Copy to Clipboard" onClick={this.handleCopyButton}>
                 <ContentCopy/>
               </IconButton>
             </Typography>
@@ -27,7 +27,7 @@ class CreatedLinkDetails extends Component {
           </Grid>*/}
 
           <Grid item>
-            <Button variant='raised'  color='primary' onClick={this.handleButton}>
+            <Button variant='raised'  color='primary' onClick={this.handleNewButton}>
               New
             </Button>
           </Grid>
@@ -36,8 +36,12 @@ class CreatedLinkDetails extends Component {
     );
   }
 
-  handleButton = () => {
+  handleNewButton = () => {
     this.props.parent.changeContent(<LinkCreator parent={this.props.parent}/>);
+  }
+
+  handleCopyButton = () => {
+    navigator.clipboard.writeText(this.props.ulink);
   }
 }
 
