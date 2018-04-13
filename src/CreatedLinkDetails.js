@@ -33,7 +33,7 @@ class CreatedLinkDetails extends Component {
   }
 
   handleNewButton = () => {
-    this.props.parent.changeContent(<LinkCreator parent={this.props.parent}/>);
+    this.props.parent.changeContent(<LinkCreator parent={this.props.parent} lastULink={this.props.ulink}/>);
   }
 
   handleCopyButton = () => {

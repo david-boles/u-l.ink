@@ -1,6 +1,7 @@
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import React, { Component } from 'react';
 import CreatedLinkDetails from './CreatedLinkDetails.js';
 import db from './index.js';
@@ -21,14 +22,25 @@ class LinkCreator extends Component {
     return (
       <Grid container justify='center' alignItems='center' style={{height: '100%'} }>
         <Grid item xs={10} sm={8} md={6} style={{display: 'flex'}}>
+          {this.conditionalBackButton()}
           <TextField placeholder='URL' autoFocus error={this.state.showError} onChange={this.handleChange} disabled={this.state.working} style={{marginRight: '10px', flexGrow: 1, minWidth: 0}} inputProps={{'aria-label': 'URL'}}/>
-          <Button variant='raised' color='primary' onClick={this.handleButton} disabled={this.state.working || !this.state.validURL}>Shorten</Button>
+          <Button variant='raised' color='primary' onClick={this.handleShortenButton} disabled={this.state.working || !this.state.validURL}>Shorten</Button>
         </Grid>
       </Grid>
     );
   }
 
-  handleButton = () => {
+  conditionalBackButton() {
+    if(this.props.lastULink) {
+      return (
+        <Button size='small' color='primary' aria-label="Back" onClick={this.handleBackButton} style={{marginRight: '10px', minWidth: '40px', borderRadius: '20px'}}>
+          <ArrowBack/>
+        </Button>
+      );
+    }
+  }
+
+  handleShortenButton = () => {
     var url = this.state.currentURL;
     if(LinkCreator.validateURL(url)) {
       this.setState({working: true});
@@ -38,6 +50,10 @@ class LinkCreator extends Component {
       //TODO Snackbar
     }
     this.setState({disable: true});
+  }
+
+  handleBackButton = () => {
+    this.props.parent.changeContent(<CreatedLinkDetails ulink={this.props.lastULink} parent={this.props.parent}/>);
   }
 
   handleChange = (event) => {
