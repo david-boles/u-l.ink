@@ -24,7 +24,7 @@ function getPage() {
     var docRef = db.collection("links").doc(hash);
     docRef.get().then(function(doc) {
         if (doc.exists) {
-          window.location = doc.data().link;
+          window.location.replace(doc.data().link);
         } else {
           //TODO
         }
