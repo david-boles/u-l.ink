@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import CreationApp from './CreationApp';
+import RedirectApp from './RedirectApp';
 import registerServiceWorker from './registerServiceWorker';
 
 var firebase = require('firebase/app');
@@ -19,19 +20,9 @@ var db = firebase.firestore();
 function getPage() {
   var hash = window.location.hash.substr(1).toLowerCase();;
   if(hash === "") {
-    return <App />
+    return <CreationApp />
   }else {
-    var docRef = db.collection("links").doc(hash);
-    docRef.get().then(function(doc) {
-        if (doc.exists) {
-          window.location.replace(doc.data().link);
-        } else {
-          //TODO
-        }
-    }).catch(function(error) {
-      console.error(error);
-      //TODO
-    });
+    return <RedirectApp uLink={hash}/>
   }
 }
 

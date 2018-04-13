@@ -7,7 +7,7 @@ import LinkCreator from './LinkCreator.js';
 
 const fadeTime = 200;
 
-class App extends Component {
+class CreationApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,4 +45,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default CreationApp;
