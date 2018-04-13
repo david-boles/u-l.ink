@@ -42,7 +42,9 @@ class CreatedLinkDetails extends Component {
     range.selectNodeContents(document.getElementById("ulink"));
     selection.removeAllRanges();
     selection.addRange(range);
-    document.execCommand("copy");
+    if(document.execCommand("copy")) {
+      //TODO snackbar stuff
+    }
     selection.removeAllRanges();
   }
 }
