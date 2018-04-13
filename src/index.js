@@ -17,10 +17,21 @@ require("firebase/firestore");
 var db = firebase.firestore();
 
 function getPage() {
-  if(window.location.hash.substr(1) === "") {
+  var hash = window.location.hash.substr(1);
+  if(hash === "") {
     return <App />
   }else {
-    return <p>Hello!</p>
+    var docRef = db.collection("links").doc(hash);
+    docRef.get().then(function(doc) {
+        if (doc.exists) {
+          window.location = doc.data().link;
+        } else {
+          //TODO
+        }
+    }).catch(function(error) {
+      console.error(error);
+      //TODO
+    });
   }
 }
 

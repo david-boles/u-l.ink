@@ -52,6 +52,10 @@ class LinkCreator extends Component {
         if (doc.exists) {
           this.createULink(url, length++);//TODO test
         } else {
+          if(url.indexOf('://') === -1) {
+            url = 'http://' + url;
+          }
+
           db.collection("links").doc(uLink).set({
               link: url
           })
