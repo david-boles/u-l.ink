@@ -7,6 +7,7 @@ import db from './index.js';
 
 class LinkCreator extends Component {
   static uLinkChars = '23456789abcdefghijkmnopqrstuvwxyz';
+
   constructor(props) {
     super(props);
     this.state = {
@@ -50,7 +51,7 @@ class LinkCreator extends Component {
     var docRef = db.collection("links").doc(uLink);
     docRef.get().then(function(doc) {
         if (doc.exists) {
-          this.createULink(url, length++);//TODO test
+          this.createULink(url, ++length);
         } else {
           if(url.indexOf('://') === -1) {
             url = 'http://' + url;
