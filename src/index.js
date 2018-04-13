@@ -17,7 +17,7 @@ require("firebase/firestore");
 var db = firebase.firestore();
 
 function getPage() {
-  var hash = window.location.hash.substr(1);
+  var hash = window.location.hash.substr(1).toLowerCase();;
   if(hash === "") {
     return <App />
   }else {
