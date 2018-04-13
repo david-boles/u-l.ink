@@ -15,16 +15,12 @@ class CreatedLinkDetails extends Component {
 
           <Grid item>
             <Typography variant='display1' style={{marginTop: '40px'}}>
-              {this.props.ulink}
-              <IconButton aria-label="Copy to Clipboard" onClick={this.handleCopyButton}>
+              <span type='text' id='ulink'>{this.props.ulink}</span>
+              <IconButton aria-label="Copy to Clipboard" onClick={this.handleCopyButton} style={{marginLeft: '10px'}}>
                 <ContentCopy/>
               </IconButton>
             </Typography>
           </Grid>
-          
-          {/*<Grid item>
-            <FormControlLabel control={<Checkbox />} label="Safe" style={{marginRight: 0}} />
-          </Grid>*/}
 
           <Grid item>
             <Button variant='raised'  color='primary' onClick={this.handleNewButton}>
@@ -41,7 +37,13 @@ class CreatedLinkDetails extends Component {
   }
 
   handleCopyButton = () => {
-    navigator.clipboard.writeText(this.props.ulink);
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(document.getElementById("ulink"));
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
+    selection.removeAllRanges();
   }
 }
 
